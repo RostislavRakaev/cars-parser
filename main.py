@@ -20,7 +20,7 @@ for arg in arguments:
 
     parsedPages = 0
 
-    for it in range(1, 30):
+    for it in range(1, 200):
 
         url = f'{URL}?page={it}'
 
