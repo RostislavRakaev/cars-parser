@@ -3,9 +3,12 @@ import requests
 from bs4 import BeautifulSoup
 
 import pandas as pd
-import sys
 
-from configs import Car, parseTable, HEADERS
+import sys
+import os
+
+from configs import Car, parseTable
+from constantes import HEADERS, RESULTS_PATH
 
 arguments = sys.argv[1:]
 
@@ -17,7 +20,7 @@ for arg in arguments:
 
     parsedPages = 0
 
-    for it in range(1, 5):
+    for it in range(1, 30):
 
         url = f'{URL}?page={it}'
 
@@ -50,6 +53,10 @@ for arg in arguments:
             break
 
     print(f'{arg} / Parsed pages: {parsedPages}')
+
+    if not os.path.exists(RESULTS_PATH):
+        os.mkdir(RESULTS_PATH)
+
     results.to_excel(f'./results/{arg}.xlsx')
 
 
